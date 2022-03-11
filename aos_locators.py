@@ -31,3 +31,8 @@ account_dict = {'usernameRegisterPage': username,
                 'addressRegisterPage': address,
                 'state_/_province_/_regionRegisterPage': province,
                 'postal_codeRegisterPage': postal_code}
+
+social_media = {"FACEBOOK": "follow_facebook", "TWITTER": "follow_twitter", "LINKEDIN": "follow_linkedin"}
+texts = ["SPECIAL OFFER", "ALL YOU WANT FROM A TABLET", "POPULAR ITEMS", "FOLLOW US"]
+links = ['TABLETS', 'SPEAKERS', 'LAPTOPS', 'MICE', 'HEADPHONES']
+links_text = ['OUR PRODUCTS', 'SPECIAL OFFER', 'POPULAR ITEMS', 'CONTACT US']
