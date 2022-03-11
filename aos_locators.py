@@ -9,6 +9,7 @@ adv_title = '\xa0Advantage Shopping'
 # new_user
 f_name = fake.first_name()
 l_name = fake.last_name()
+full_name = f'{f_name} {l_name}'
 username = f'{(f_name + l_name[0:1]).lower()}'
 email = f'{username}@tg.ca'
 phone = fake.phone_number()
@@ -36,3 +37,4 @@ social_media = {"FACEBOOK": "follow_facebook", "TWITTER": "follow_twitter", "LIN
 texts = ["SPECIAL OFFER", "ALL YOU WANT FROM A TABLET", "POPULAR ITEMS", "FOLLOW US"]
 links = ['TABLETS', 'SPEAKERS', 'LAPTOPS', 'MICE', 'HEADPHONES']
 links_text = ['OUR PRODUCTS', 'SPECIAL OFFER', 'POPULAR ITEMS', 'CONTACT US']
+product_name = 'HP ROAR PLUS WIRELESS SPEAKER'

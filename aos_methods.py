@@ -3,6 +3,7 @@ import datetime
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 import aos_locators as locators
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
@@ -30,7 +31,7 @@ def set_up(driver):
         print(f'{locators.website} Home Page did not launch. Check your code and internet connection!')
 
 
-def tier_down(driver):
+def tear_down(driver):
     if driver is not None:
         print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
         print(f'The test Completed at: {datetime.datetime.now()}')
@@ -191,3 +192,52 @@ def delete_user(username, driver):
     yes.find_element(By.CLASS_NAME, 'deletePopupBtn').click()
     sleep(1)
     print('Account successfully deleted!')
+
+
+def checkout_shopping_cart(full_name, username, password, phone_number, driver, product):
+    print('---- Click on product and add the product to shopping cart ----')
+    print(f'Find the product: {product} on home page and add it to the shopping cart ')
+    driver.find_element(By.XPATH, '//a/label[@id="details_21"]').click()
+    sleep(1)
+    driver.find_element(By.NAME, 'save_to_cart').click()
+    sleep(1)
+    driver.find_element(By.ID, 'shoppingCartLink').click()
+    sleep(1)
+    driver.find_element(By.ID, 'checkOutButton').click()
+    sleep(1)
+    print(f'Validate if full name: "{full_name}" and product: "{product}" are correct in order payment')
+    assert driver.find_element(By.XPATH, f'//div[@id="userDetails"]/div/label[contains(.,"{full_name}")]')
+    sleep(1)
+    product_text = driver.find_element(By.XPATH, '//div[@id="userCart"]//h3[@class="ng-binding"]').text
+    assert product_text == product
+    print('Full name and product are correct, you can continue to payment method!')
+    sleep(1)
+    driver.find_element(By.ID, 'next_btn').click()
+    driver.find_element(By.NAME, 'safepay_username').send_keys(username)
+    sleep(1)
+    driver.find_element(By.NAME, 'safepay_password').send_keys(password)
+    sleep(1)
+    driver.find_element(By.ID, 'pay_now_btn_SAFEPAY').click()
+    sleep(1)
+    print('Check the phone number!')
+    order_phone_number = driver.find_element(By.XPATH,
+                                             '//div[@id="orderPaymentSuccess"]//div[@class="innerSeccion"][3]/label[@class="ng-binding"]').text
+    assert order_phone_number == phone_number
+    print(f'Phone number is correct! Order phone number: {order_phone_number}, your number:{phone_number}')
+    sleep(1)
+    assert driver.find_element(By.XPATH, '//span[contains(.,"Thank you for buying with Advantage")]').is_displayed()
+    assert driver.find_element(By.ID, 'trackingNumberLabel').is_displayed()
+    t_number = driver.find_element(By.ID, 'trackingNumberLabel').text
+    sleep(1)
+    assert driver.find_element(By.ID, 'orderNumberLabel').is_displayed()
+    o_number = driver.find_element(By.ID, 'orderNumberLabel').text
+    print(
+        f'Great {full_name}, your order is successful! Message: "Thank you for buying with Advantage" is displayed! Your order number is: {o_number} '
+        f'and your tracking number is: {t_number}')
+    # return to home page
+    driver.find_element(By.XPATH, '//a[@href="#/"]').click()
+
+# set_up(driver)
+#
+# checkout_shopping_cart()
+# tear_down(driver)
