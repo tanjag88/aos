@@ -7,6 +7,12 @@
 To create automated test to test basic business critical functionality of an eCommerce web application Advantage Online Shopping.  
 This project was given as capstone project and final phase of course for Software Quality and Test Automation during my studies at Canadian College of Technology and Business (CCTB).
 
+**Video of all tests running**
+
+https://user-images.githubusercontent.com/63124019/159391418-a2a527ca-f32e-4e1c-b1db-78bb0eb25edc.mp4
+
+
+
 # Technology Stack
 
 ### Application Environment
